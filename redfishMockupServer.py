@@ -528,7 +528,7 @@ class RfMockupServer(BaseHTTPRequestHandler):
                     # don't bother if this item exists, otherwise, check if its an action or a file
                     # if file
                     #   405 if not Collection
-                    #   204 if success
+                    #   201 if success
                     #   404 if no file present
                     if success:
                         if payload.get('Members') is None:
@@ -549,7 +549,7 @@ class RfMockupServer(BaseHTTPRequestHandler):
 
                             self.patchedLinks[newfpath] = data_received
                             self.patchedLinks[fpath] = payload
-                            self.send_response(204)
+                            self.send_response(201)
                             self.send_header("Location", newpath)
                             self.send_header("Content-Length", "0")
                             self.end_headers()
